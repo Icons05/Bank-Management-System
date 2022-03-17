@@ -1,0 +1,34 @@
+<p>list-client works!</p>
+<div>
+    <h1 class="myH1">Bank Account Management System</h1>
+</div>
+<div class="myCenter">
+    <table class="clients">
+        <tr>
+            <th>Client Id</th>
+            <th>Client Name</th>
+	        <th>accountNumber</th>
+            <th>balance</th>
+            <th>outstandingAmount</th>
+            <th>doj</th>
+            <th>Remove a client</th>
+            <th>Update a client</th>
+        </tr>
+        <tr *ngFor="let client of clients; index as i;">       
+            <td>{{client.clientId}}</td>
+            <td>{{client.name}}</td>
+	        <td>{{client.accountNumber}}</td>  
+            <td>{{client.balance}}</td>
+            <td>{{client.outstandingAmount}}</td>
+            <td>{{client.doj | date: 'mediumDate'}}</td>
+            <td style="text-align:center"><button mat-raised-button color="warn" (click)="delClient($event, i)">Delete</button></td>
+            <td style="text-align:center;"><a mat-stroked-button color="black" routerLink="/clients/update/{{client.clientId}}">Update</a></td>
+        </tr>
+    </table>
+    <br><br>
+    <div class="myMain">
+        <a mat-stroked-button routerLink="/clients/home">Home</a>
+    </div>
+</div>
+
+

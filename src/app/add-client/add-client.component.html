@@ -1,0 +1,148 @@
+<p>add-client works!</p>
+
+<div>
+    <h1 class="myH1">Bank Account Management System</h1>
+</div>
+
+<div class="container">
+    <h2 class="myH2">Add new Client detail module</h2>
+    <div class="form-div">
+        <form [formGroup]="myForm" (ngSubmit)="mySubmit()">
+            <table class="myTable">
+                <tr>
+                    <div>
+                        <td><label for="name">Client Name</label></td>
+                        <td><input type="text"
+                                placeholder="Enter client name"
+                                name="name"
+                                id="name"
+                                formControlName="name"
+                                [(ngModel)]="client.name">
+                                <div *ngIf="name!.invalid && (name!.dirty || name!.touched)">
+                                    Name is required
+                                </div>     
+                        </td>
+                    </div>
+                </tr>
+
+		        <tr>
+                    <div>
+                        <td><label for="accountNumber">Account Number</label></td>
+                        <td><input type="text"
+                                placeholder="Enter accountNumber"
+                                name="accountNumber"
+                                id="accountNumber"
+                                formControlName="accountNumber"
+                                [(ngModel)]="client.accountNumber">
+                                <div *ngIf="accountNumber!.invalid && (accountNumber!.dirty || accountNumber!.touched)">
+                                    AccountNumber is required
+                                </div>     
+                        </td>
+                    </div>
+                </tr>
+
+                <tr>
+                    <div>
+                        <td><label for="balance">Balance</label></td>
+                        <td><input type="number"
+                                placeholder="Enter balance"
+                                name="balance"
+                                id="balance"
+                                maxlength=""
+                                formControlName="balance"
+                                [(ngModel)]="client.balance">
+                                <div *ngIf="balance!.invalid && (balance!.dirty || balance!.touched)">
+                                        <div *ngIf="balance!.errors!['required']">
+                                            Balance is required
+                                        </div>
+                                        <div *ngIf="balance!.errors!['min']">
+                                            Minimum balance is Rs 1000
+                                        </div>     
+                                </div>
+                                
+                        </td>
+                    </div>
+                </tr>
+
+	
+		        <tr>
+                    <div>
+                        <td><label for="outstandingAmount">OutstandingAmount</label></td>
+                        <td><input type="number"
+                                placeholder="Enter outstandingAmount"
+                                name="outstandingAmount"
+                                id="outstandingAmount"
+                                maxlength="5"
+                                formControlName="outstandingAmount"
+                                [(ngModel)]="client.outstandingAmount">
+                                <div *ngIf="outstandingAmount!.invalid && (outstandingAmount!.dirty || outstandingAmount!.touched)">
+                                        <div *ngIf="outstandingAmount!.errors!['required']">
+                                            OutstandingAmount is required
+                                        </div>
+                                        <div *ngIf="outstandingAmount!.errors!['min']">
+                                            Minimum outstandingAmount is Rs 1000
+                                        </div>     
+                                </div>
+                                
+                        </td>
+                    </div>
+                </tr>
+	
+                <tr>
+                    <div>
+                        <td><label for="doj">Date of joining</label></td>
+                        <td><input type="date"
+                                name="doj"
+                                id="doj"
+                                formControlName="doj"
+                                [(ngModel)]="client.doj">
+                                <div *ngIf="doj?.invalid && (doj?.dirty || doj?.touched)">
+                                    Date of joining is required
+                                </div>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <div>
+                        <td>
+                            <label for="confirm">Confirm</label>
+                        </td>
+                        <td>
+                            <input type="checkbox"
+                            id="confirm"
+                            name="confirm"
+                            required
+                            (click)="toggleConfirmed()"
+                            [(ngModel)]="isConfirmed">
+                        </td>
+                    </div>        
+                </tr>
+                <tr>
+                    <div class="myCenter">
+                        <div *ngIf="isConfirmed">
+                            <td>
+                                <button mat-raised-button color="primary" type="submit">Submit</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn" type="reset">Clear</button>
+                            </td>
+                        </div>
+                    </div>
+                </tr>
+            </table>
+        </form>    
+    </div>
+    <br>
+        
+    <div class="myMain">
+        <a mat-stroked-button routerLink="/clients/home">Home</a>
+    </div>
+    <div *ngIf="msg">
+        {{msg}}
+    </div>
+</div>
+
+
